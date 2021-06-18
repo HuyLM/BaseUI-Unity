@@ -28,7 +28,7 @@ public class InventoryItemDisplayer : Displayer<GameItem>
             return;
         }
         imgIcon.sprite = Model.Icon;
-        bool isUsing = ShopData.Instance.CurrentUsingItemID == Model.Id;
+        bool isUsing = ShopData.Instance.CurrentUsingItem == Model;
         imgUsed.SetActive(isUsing);
         txtUse.SetActive(!isUsing);
         SetStateUseButton(!isUsing, true);

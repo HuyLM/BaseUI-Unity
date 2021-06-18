@@ -7,22 +7,19 @@ using UnityEngine;
 namespace AtoLib.InventorySystem
 {
     [CreateAssetMenu(fileName = "NewInventory", menuName = "Data/Item/Inventory")]
-    public class Inventory : ScriptableObject
+    public class Inventory : SingletonScriptableObject<Inventory>
     {
 
         [System.Serializable]
         private class SaveDataModel
         {
             public ItemSlot[] i;
+            public int[] ii;
 
-            public SaveDataModel(ItemSlot[] items)
-            {
-                this.i = items;
-            }
-
-            public SaveDataModel(int capacity)
+            public SaveDataModel(int capacity, int capacityInfinity)
             {
                 i = new ItemSlot[capacity];
+                ii = new int[capacityInfinity];
             }
         }
 
@@ -116,13 +113,17 @@ namespace AtoLib.InventorySystem
                 return null;
             }
 
-            SaveDataModel saveData = new SaveDataModel(itemDictionary.Count);
+            SaveDataModel saveData = new SaveDataModel(itemDictionary.Count, infiniteItemIds.Count);
 
             int index = 0;
             foreach (int id in itemDictionary.Keys)
             {
                 saveData.i[index] = itemDictionary[id];
                 index++;
+            }
+            for (int i = 0; i < infiniteItemIds.Count; ++i)
+            {
+                saveData.ii[i] = infiniteItemIds[i];
             }
             return JsonUtility.ToJson(saveData);
         }
@@ -143,6 +144,11 @@ namespace AtoLib.InventorySystem
             foreach (ItemSlot item in saveData.i)
             {
                 AddInitialize(item);
+            }
+
+            for (int i = 0; i < saveData.ii.Length; ++i)
+            {
+                infiniteItemIds[i] = saveData.ii[i];
             }
         }
 

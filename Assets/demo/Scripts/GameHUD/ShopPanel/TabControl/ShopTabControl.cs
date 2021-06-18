@@ -1,10 +1,13 @@
 ﻿using AtoLib.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopTabControl : TabControl
 {
     [SerializeField] private GameObject shopTabView;
     [SerializeField] private GameObject inventoryView;
+    [SerializeField] private ScrollRect shopScrollRect;
+    [SerializeField] private ScrollRect inventoryScrollRect;
     protected override void SelectTab(int index)
     {
         base.SelectTab(index);
@@ -29,6 +32,7 @@ public class ShopTabControl : TabControl
         shopTabView.SetActive(true);
         ShopPanel shopPanel = GameHUD.Instance.GetFrame<ShopPanel>();
         shopPanel.ShowShop();
+        shopScrollRect.verticalNormalizedPosition = 1;
     }
 
     private void OpenInventoryTab()
@@ -36,6 +40,7 @@ public class ShopTabControl : TabControl
         inventoryView.SetActive(true);
         ShopPanel shopPanel = GameHUD.Instance.GetFrame<ShopPanel>();
         shopPanel.ShowInventory();
+        inventoryScrollRect.verticalNormalizedPosition = 1;
     }
 
     private void HideAllTab()

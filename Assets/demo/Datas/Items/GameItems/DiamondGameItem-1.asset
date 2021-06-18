@@ -19,4 +19,4 @@ MonoBehaviour:
   price:
     i: 1
     a: 272
-  useTime: 24
+  useTime: 0.01

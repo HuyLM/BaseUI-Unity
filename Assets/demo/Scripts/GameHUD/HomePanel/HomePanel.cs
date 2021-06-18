@@ -25,7 +25,20 @@ public class HomePanel : DOTweenFrame
     protected override void OnShow(Action onCompleted = null, bool instant = false)
     {
         base.OnShow(onCompleted, instant);
-        //imgAvatar.sprite = null; //set avatar
+    }
+
+    protected override void OnPause(Action onCompleted = null, bool instant = false)
+    {
+        base.OnPause(onCompleted, instant);
+
+        // Add Listener SFS
+    }
+
+    protected override void OnResume(Action onCompleted = null, bool instant = false)
+    {
+        base.OnResume(onCompleted, instant);
+
+        // Remove Listener SFS
     }
 
 
@@ -46,6 +59,6 @@ public class HomePanel : DOTweenFrame
 
     private void OnShopButtonClicked()
     {
-        GameHUD.Instance.Show<ShopPanel>();
+        GameHUD.Instance.Show<ShopPanel>(pauseCurrent: true);
     }
 }

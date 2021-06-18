@@ -2,8 +2,10 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AtoLib.UI {
-    public class DOTweenShakeRotation : DOTweenTransition {
+namespace AtoLib.UI
+{
+    public class DOTweenShakeRotation : DOTweenTransition
+    {
         [SerializeField] private Transform target;
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 strength;
@@ -11,32 +13,47 @@ namespace AtoLib.UI {
         [SerializeField] private float randomness = 90f;
         [SerializeField] private bool fadeOut = false;
 
-        private void Reset() {
+        private void Reset()
+        {
             target = transform;
         }
 
-        public override void ResetState() {
+        public override void ResetState()
+        {
             target.localRotation = Quaternion.Euler(from);
         }
 
-        public override void DoTransition(Action onCompleted, bool restart) {
-            if (restart) {
-                ResetState();
-            }
-            Tween = target.DOShakeRotation(Duration, strength, vibrato, randomness, fadeOut)
-                          .SetEase(Ease)
-                          .SetUpdate(IgnoreTimeScale)
-                          .SetDelay(Delay)
-                          .OnComplete(() => onCompleted?.Invoke());
+        public override void CreateTween(Action onCompleted)
+        {
+            Tween = target.DOShakeRotation(Duration, strength, vibrato, randomness, fadeOut);
+            base.CreateTween(onCompleted);
         }
 
 #if UNITY_EDITOR
+
+        private Vector3 preRotate;
+
+        public override void Save()
+        {
+            preRotate = target.localRotation.eulerAngles;
+        }
+
+        public override void Load()
+        {
+            target.localRotation = Quaternion.Euler(preRotate);
+        }
+
+
+
+
         [ContextMenu("Set Form")]
-        private void SetStartState() {
+        private void SetStartState()
+        {
             from = target.localRotation.eulerAngles;
         }
         [ContextMenu("Target => Form")]
-        private void SetStartTarget() {
+        private void SetStartTarget()
+        {
             target.localRotation = Quaternion.Euler(from);
         }
 #endif

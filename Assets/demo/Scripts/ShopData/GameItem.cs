@@ -9,6 +9,8 @@ public class GameItem : ItemData
 
     public DateTime ExpiryDate { get; set; }
 
+    public float UseTime { get => useTime; }
+
     public bool IsExpiryDate
     {
         get
@@ -19,7 +21,7 @@ public class GameItem : ItemData
 
     public virtual void Use()
     {
-        //GameInventory.Instance.UseItem(this);
+        ShopData.Instance.CurrentUsingItem = this;
     }
 
     public virtual void Buy()

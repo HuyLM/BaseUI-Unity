@@ -1,14 +1,13 @@
 ﻿using AtoLib;
-using GameSystem.Common.UnityInspector;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShopData", menuName = "Resource/ShopData")]
 public class ShopData : SingletonScriptableObject<ShopData>
 {
+
     [SerializeField] private GameItem[] items;
-    [SerializeField, SpriteField] private Sprite icon;
-    public int CurrentUsingItemID { get; set; }
+    public GameItem CurrentUsingItem { get; set; }
 
     public List<GameItem> GetShopItems()
     {
@@ -51,7 +50,7 @@ public class ShopData : SingletonScriptableObject<ShopData>
             {
                 items[i].LoadFromJson(null);
             }
-            CurrentUsingItemID = -1;
+            CurrentUsingItem = null;
             return;
         }
         int index = 0;
@@ -63,12 +62,34 @@ public class ShopData : SingletonScriptableObject<ShopData>
         {
             items[index].LoadFromJson(null);
         }
+        for (int i = 0; i < items.Length; ++i)
+        {
+            if (items[i].Id == saveData.usingItemID)
+            {
+                if (items[i].IsExpiryDate)
+                {
+                    CurrentUsingItem = null;
+                }
+                else
+                {
+                    CurrentUsingItem = items[i];
+                }
+                break;
+            }
+        }
     }
 
     public string SaveToJson()
     {
         SaveData saveData = new SaveData(items.Length);
-        saveData.usingItemID = CurrentUsingItemID;
+        if (CurrentUsingItem != null)
+        {
+            saveData.usingItemID = CurrentUsingItem.Id;
+        }
+        else
+        {
+            saveData.usingItemID = -1;
+        }
         for (int i = 0; i < items.Length; ++i)
         {
             saveData.items[i] = items[i].SaveToJson();

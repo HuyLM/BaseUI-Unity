@@ -198,4 +198,5 @@ MonoBehaviour:
   order: 0
   defaultFrame: {fileID: 0}
   frames:
+  - {fileID: 227766652499195690, guid: 4bd0db293fc146f43bda4c485dc8d506, type: 3}
   - {fileID: 4997555683872858451, guid: f7cd3278376a965439667af9bca01f4f, type: 3}
