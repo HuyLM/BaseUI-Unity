@@ -4,69 +4,68 @@ using DG.Tweening;
 
 namespace AtoLib.UI
 {
-    public class DOTweenScale : DOTweenTransition
+    public class DOTweenLocalPosition : DOTweenTransition
     {
         [SerializeField] private Transform target;
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 to;
 
-
         public Transform Target { get => target; set => target = value; }
         public Vector3 From { get => from; set => from = value; }
         public Vector3 To { get => to; set => to = value; }
 
-
         private void Reset()
         {
-            target = transform;
+            target = transform as RectTransform;
         }
 
         public override void ResetState()
         {
-            target.localScale = from;
+            target.localPosition = from;
         }
 
         public override void CreateTween(Action onCompleted)
         {
-            Tween = target.DOScale(to, Duration);
+            Tween = target.DOLocalMove(to, Duration);
             base.CreateTween(onCompleted);
         }
 
 #if UNITY_EDITOR
 
-        private Vector3 preScale;
+
+
+        private Vector3 prePositon;
 
         public override void Save()
         {
-            preScale = target.localScale;
+            prePositon = target.localPosition;
         }
 
         public override void Load()
         {
-            target.localScale = preScale;
+            target.localPosition = prePositon;
         }
-
 
 
         [ContextMenu("Set From")]
         public void SetFromState()
         {
-            from = target.localScale;
+            from = target.localPosition;
         }
         [ContextMenu("Set To")]
         public void SetToState()
         {
-            to = target.localScale;
+            to = target.localPosition;
         }
         [ContextMenu("Target => Form")]
         private void SetStartTarget()
         {
-            target.localScale = from;
+            target.localPosition = from;
         }
         [ContextMenu("Target => To")]
         private void SetFinishTarget()
         {
-            target.localScale = to;
+            target.localPosition = to;
         }
 #endif
     }

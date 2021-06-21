@@ -10,6 +10,10 @@ namespace AtoLib.UI
         [SerializeField] private float from;
         [SerializeField] private float to;
 
+        public CanvasGroup Target { get => target; set => target = value; }
+        public float From { get => from; set => from = value; }
+        public float To { get => to; set => to = value; }
+
         private void Reset()
         {
             target = GetComponent<CanvasGroup>();
@@ -42,12 +46,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.alpha;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.alpha;
         }

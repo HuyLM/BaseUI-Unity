@@ -11,6 +11,12 @@ namespace AtoLib.UI
         [SerializeField] private Vector3 to;
         [SerializeField] private RotateMode mode = RotateMode.Fast;
 
+        public Transform Target { get => target; set => target = value; }
+        public Vector3 From { get => from; set => from = value; }
+        public Vector3 To { get => to; set => to = value; }
+        public RotateMode Mode { get => mode; set => mode = value; }
+
+
         private void Reset()
         {
             target = transform;
@@ -44,12 +50,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set Form")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.localRotation.eulerAngles;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.localRotation.eulerAngles;
         }

@@ -9,7 +9,10 @@ namespace AtoLib.UI
         [SerializeField] private RectTransform target;
         [SerializeField] private Vector2 from;
         [SerializeField] private Vector2 to;
-        [SerializeField] private bool snapping = false;
+
+        public RectTransform Target { get => target; set => target = value; }
+        public Vector2 From { get => from; set => from = value; }
+        public Vector2 To { get => to; set => to = value; }
 
         private void Reset()
         {
@@ -23,7 +26,7 @@ namespace AtoLib.UI
 
         public override void CreateTween(Action onCompleted)
         {
-            Tween = target.DOAnchorPos(to, Duration, snapping);
+            Tween = target.DOAnchorPos(to, Duration);
             base.CreateTween(onCompleted);
         }
 
@@ -45,12 +48,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.anchoredPosition;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.anchoredPosition;
         }

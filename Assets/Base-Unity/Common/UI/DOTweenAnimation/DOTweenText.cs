@@ -14,6 +14,14 @@ namespace AtoLib.UI
         [SerializeField] private ScrambleMode scrambleMode = ScrambleMode.None;
         [SerializeField] private string scrambleChars;
 
+        public Text Target { get => target; set => target = value; }
+        public string From { get => from; set => from = value; }
+        public string To { get => to; set => to = value; }
+        public bool RichTextEnabled { get => richTextEnabled; set => richTextEnabled = value; }
+        public ScrambleMode ScrambleMode { get => scrambleMode; set => scrambleMode = value; }
+        public string ScrambleChars { get => scrambleChars; set => scrambleChars = value; }
+
+
         private void Reset()
         {
             target = GetComponent<Text>();
@@ -52,12 +60,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.text;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.text;
         }

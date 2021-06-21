@@ -12,6 +12,13 @@ namespace AtoLib.UI
         [SerializeField] private int vibrato = 10;
         [SerializeField] private float elasticity = 1f;
 
+        public Transform Target { get => target; set => target = value; }
+        public Vector3 From { get => from; set => from = value; }
+        public Vector3 Punch { get => punch; set => punch = value; }
+        public int Vibrato { get => vibrato; set => vibrato = value; }
+        public float Elasticity { get => elasticity; set => elasticity = value; }
+
+
         private void Reset()
         {
             target = transform;
@@ -45,12 +52,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set Form")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.localRotation.eulerAngles;
         }
         [ContextMenu("Target => Form")]
-        private void SetStartTarget()
+        public void SetToState()
         {
             target.localRotation = Quaternion.Euler(from);
         }

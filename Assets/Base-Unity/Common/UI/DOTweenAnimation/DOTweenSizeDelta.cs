@@ -11,6 +11,12 @@ namespace AtoLib.UI
         [SerializeField] private Vector2 to;
         [SerializeField] private bool snapping = false;
 
+        public RectTransform Target { get => target; set => target = value; }
+        public Vector2 From { get => from; set => from = value; }
+        public Vector2 To { get => to; set => to = value; }
+        public bool Snapping { get => snapping; set => snapping = value; }
+
+
         private void Reset()
         {
             target = transform as RectTransform;
@@ -45,12 +51,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.sizeDelta;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.sizeDelta;
         }

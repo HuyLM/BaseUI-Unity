@@ -11,6 +11,10 @@ namespace AtoLib.UI
         [SerializeField] private Color from;
         [SerializeField] private Color to;
 
+        public Graphic Target { get => target; set => target = value; }
+        public Color From { get => from; set => from = value; }
+        public Color To { get => to; set => to = value; }
+
         private void Reset()
         {
             target = GetComponent<Graphic>();
@@ -44,12 +48,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.color;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.color;
         }

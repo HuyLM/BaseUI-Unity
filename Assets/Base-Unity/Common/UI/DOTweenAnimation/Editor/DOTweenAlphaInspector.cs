@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace AtoLib.UI
@@ -18,8 +19,21 @@ namespace AtoLib.UI
             base.OnInspectorGUI();
 
             dOTweenAlpha.Target = (Graphic)EditorGUILayout.ObjectField("Target", dOTweenAlpha.Target, typeof(Graphic), true);
-            dOTweenAlpha.From = EditorGUILayout.FloatField("From", dOTweenAlpha.From);
-            dOTweenAlpha.To = EditorGUILayout.FloatField("To", dOTweenAlpha.To);
+            GUILayout.BeginHorizontal();
+            dOTweenAlpha.From = EditorGUILayout.Slider("From", dOTweenAlpha.From, 0, 1);
+            if (GUILayout.Button("Set From", GUILayout.Width(100)))
+            {
+                dOTweenAlpha.SetFromState();
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            dOTweenAlpha.To = EditorGUILayout.Slider("To", dOTweenAlpha.To, 0, 1);
+            if (GUILayout.Button("Set To", GUILayout.Width(100)))
+            {
+                dOTweenAlpha.SetToState();
+            }
+            GUILayout.EndHorizontal();
         }
     }
 }

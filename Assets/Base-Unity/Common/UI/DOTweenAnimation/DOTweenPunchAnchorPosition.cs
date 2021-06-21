@@ -13,6 +13,14 @@ namespace AtoLib.UI
         [SerializeField] private float elasticity = 1f;
         [SerializeField] private bool snapping = false;
 
+        public RectTransform Target { get => target; set => target = value; }
+        public Vector2 From { get => from; set => from = value; }
+        public Vector2 Punch { get => punch; set => punch = value; }
+        public int Vibrato { get => vibrato; set => vibrato = value; }
+        public float Elasticity { get => elasticity; set => elasticity = value; }
+        public bool Snapping { get => snapping; set => snapping = value; }
+
+
         private void Reset()
         {
             target = transform as RectTransform;
@@ -47,13 +55,13 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.anchoredPosition;
         }
 
         [ContextMenu("Target => From")]
-        private void SetStartTarget()
+        public void SetToState()
         {
             target.anchoredPosition = from;
         }

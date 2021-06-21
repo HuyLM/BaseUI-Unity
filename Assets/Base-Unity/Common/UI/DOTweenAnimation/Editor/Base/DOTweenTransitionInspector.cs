@@ -24,15 +24,20 @@ namespace AtoLib.UI
 
         public override void OnInspectorGUI()
         {
+            GUI.enabled = false;
+            EditorGUILayout.ObjectField("Script:", MonoScript.FromMonoBehaviour((DOTweenTransition)target), typeof(DOTweenTransition), false);
+            GUI.enabled = true;
+            GUILayout.Space(20);
+
             GUILayout.BeginHorizontal();
             EditorGUI.BeginDisabledGroup(isPlaying);
-            if (GUILayout.Button("play"))
+            if (GUILayout.Button("play", GUILayout.Height(50)))
             {
                 Play();
             }
             EditorGUI.EndDisabledGroup();
             EditorGUI.BeginDisabledGroup(!isPlaying);
-            if (GUILayout.Button("Stop"))
+            if (GUILayout.Button("Stop", GUILayout.Height(50)))
             {
                 Stop();
             }
@@ -66,12 +71,6 @@ namespace AtoLib.UI
                 transition.Curve = EditorGUILayout.CurveField("Curve", transition.Curve);
             }
             GUILayout.Space(20);
-            GUI.enabled = false;
-            EditorGUILayout.ObjectField("Script:", MonoScript.FromMonoBehaviour((DOTweenTransition)target), typeof(DOTweenTransition), false);
-            GUI.enabled = true;
-
-            base.OnInspectorGUI();
-
         }
 
         private void Play()

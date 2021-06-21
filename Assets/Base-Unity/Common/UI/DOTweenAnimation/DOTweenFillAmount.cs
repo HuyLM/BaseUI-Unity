@@ -11,6 +11,10 @@ namespace AtoLib.UI
         [SerializeField] private float from;
         [SerializeField] private float to;
 
+        public Image Target { get => target; set => target = value; }
+        public float From { get => from; set => from = value; }
+        public float To { get => to; set => to = value; }
+
         private void Reset()
         {
             target = GetComponent<Image>();
@@ -44,12 +48,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set From")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.color.a;
         }
         [ContextMenu("Set To")]
-        private void SetFinishState()
+        public void SetToState()
         {
             to = target.color.a;
         }

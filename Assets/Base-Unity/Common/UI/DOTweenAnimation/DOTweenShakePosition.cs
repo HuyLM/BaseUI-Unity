@@ -13,6 +13,13 @@ namespace AtoLib.UI
         [SerializeField] private float randomness = 90f;
         [SerializeField] private bool fadeOut = false;
 
+        public Transform Target { get => target; set => target = value; }
+        public Vector3 From { get => from; set => from = value; }
+        public Vector3 Strength { get => strength; set => strength = value; }
+        public int Vibrato { get => vibrato; set => vibrato = value; }
+        public float Randomness { get => randomness; set => randomness = value; }
+        public bool FadeOut { get => fadeOut; set => fadeOut = value; }
+
         private void Reset()
         {
             target = transform;
@@ -47,12 +54,12 @@ namespace AtoLib.UI
 
 
         [ContextMenu("Set Form")]
-        private void SetStartState()
+        public void SetFromState()
         {
             from = target.localPosition;
         }
         [ContextMenu("Target => Form")]
-        private void SetStartTarget()
+        public void SetToState()
         {
             target.localPosition = from;
         }
