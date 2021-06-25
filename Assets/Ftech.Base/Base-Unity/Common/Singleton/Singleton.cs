@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Ftech.Lib
@@ -264,7 +265,15 @@ namespace Ftech.Lib
     #endregion
 
     #region ScriptableObject
-    public abstract class SingletonScriptableObject<T> : ScriptableObject where T : ScriptableObject
+    public abstract class SingletonScriptableObject : ScriptableObject
+    {
+        public virtual void OnAwake()
+        {
+
+        }
+
+    }
+    public abstract class SingletonScriptableObject<T> : SingletonScriptableObject where T : ScriptableObject
     {
         static T _instance = null;
         public static T Instance
@@ -273,29 +282,12 @@ namespace Ftech.Lib
             {
                 if (!_instance)
                 {
-                    _instance = Resources.FindObjectsOfTypeAll<T>()[0];
+                    _instance = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
                 }
                 return _instance;
             }
         }
 
-        protected virtual void Awake()
-        {
-            if (_instance == null)
-                _instance = this as T;
-            else if (this != _instance)
-            {
-                return;
-            }
-
-            OnAwake();
-        }
-
-
-        protected virtual void OnAwake()
-        {
-
-        }
     }
     #endregion
 
