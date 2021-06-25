@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [CustomEditor(typeof(DOTweenAnimation))]
     public class DOTweenAnimationInspector : Editor

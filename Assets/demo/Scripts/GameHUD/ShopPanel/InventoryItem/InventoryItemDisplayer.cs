@@ -1,8 +1,9 @@
-﻿using AtoLib.UI;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Ftech.Lib.UI;
 
 public class InventoryItemDisplayer : Displayer<GameItem>
 {
@@ -67,7 +68,7 @@ public class InventoryItemDisplayer : Displayer<GameItem>
             btnUse.gameObject.SetActive(show);
             if (show)
             {
-                btnUse.SetState(interaction);
+                btnUse.interactable = (interaction);
             }
         }
     }

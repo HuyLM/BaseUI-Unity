@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-namespace AtoLib.UI {
+namespace Ftech.Lib.UI {
     [AddComponentMenu("Layout/Auto Expand Grid Layout Group", 152)]
     public class AutoExpandGridLayoutGroup : LayoutGroup {
         public enum Corner { UpperLeft = 0, UpperRight = 1, LowerLeft = 2, LowerRight = 3 }

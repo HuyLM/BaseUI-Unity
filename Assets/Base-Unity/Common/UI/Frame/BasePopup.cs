@@ -1,10 +1,9 @@
-﻿using AtoLib;
-using AtoLib.UI;
-using System;
+﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class BasePopup : DOTweenFrame
     {
@@ -12,8 +11,8 @@ namespace AtoLib.UI
         [Header("[References]")]
         [SerializeField] protected TextMeshProUGUI tileText;
         [SerializeField] protected TextMeshProUGUI messageText;
-        [SerializeField] protected ButtonBase closeTap;
-        [SerializeField] protected ButtonBase closeButton;
+        [SerializeField] protected Button closeTap;
+        [SerializeField] protected Button closeButton;
         [SerializeField] protected TextMeshProUGUI closeText;
 
         protected Action closeAction;
@@ -102,7 +101,7 @@ namespace AtoLib.UI
                 closeButton.gameObject.SetActive(show);
                 if (show)
                 {
-                    closeButton.SetState(interactable);
+                    closeButton.interactable = (interactable);
                 }
             }
             return this;
@@ -127,7 +126,7 @@ namespace AtoLib.UI
                 closeTap.gameObject.SetActive(show);
                 if (show)
                 {
-                    closeTap.SetState(interactable);
+                    closeTap.interactable = (interactable);
                 }
             }
             return this;

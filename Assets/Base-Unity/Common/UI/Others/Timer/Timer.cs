@@ -2,7 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class Timer : MonoBehaviour
     {

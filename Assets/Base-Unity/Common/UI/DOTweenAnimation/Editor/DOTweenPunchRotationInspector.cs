@@ -1,41 +1,65 @@
-﻿using UnityEditor;
+﻿using Ftech.Lib.UI;
+using UnityEditor;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [CustomEditor(typeof(DOTweenPunchRotation))]
     public class DOTweenPunchRotationInspector : DOTweenTransitionInspector
     {
 
         private DOTweenPunchRotation dOTweenPunchRotation;
+        private SerializedProperty targetProperty;
+        private SerializedProperty fromCurrentProperty;
+        private SerializedProperty fromProperty;
+        private SerializedProperty toProperty;
+        private SerializedProperty vibratoProperty;
+        private SerializedProperty elasticityProperty;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             dOTweenPunchRotation = transition as DOTweenPunchRotation;
+            targetProperty = serializedObject.FindProperty("target");
+            fromCurrentProperty = serializedObject.FindProperty("fromCurrent");
+            fromProperty = serializedObject.FindProperty("from");
+            toProperty = serializedObject.FindProperty("to");
+            vibratoProperty = serializedObject.FindProperty("vibrato");
+            elasticityProperty = serializedObject.FindProperty("elasticity");
         }
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            dOTweenPunchRotation.Target = (Transform)EditorGUILayout.ObjectField("Target", dOTweenPunchRotation.Target, typeof(Transform), true);
-            GUILayout.BeginHorizontal();
-            dOTweenPunchRotation.From = EditorGUILayout.Vector3Field("From", dOTweenPunchRotation.From);
-            if (GUILayout.Button("Set From", GUILayout.Width(80)))
-            {
-                dOTweenPunchRotation.SetFromState();
-            }
-            GUILayout.EndHorizontal();
+            EditorGUILayout.PropertyField(targetProperty);
 
+            EditorGUILayout.PropertyField(fromCurrentProperty);
+            if (!dOTweenPunchRotation.FromCurrent)
+            {
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(fromProperty);
+                if (GUILayout.Button("Set From", GUILayout.Width(100)))
+                {
+                    dOTweenPunchRotation.SetFromState();
+                }
+                GUILayout.EndHorizontal();
+            }
             GUILayout.BeginHorizontal();
-            dOTweenPunchRotation.Punch = EditorGUILayout.Vector3Field("Punch", dOTweenPunchRotation.Punch);
-            if (GUILayout.Button("Set Punch", GUILayout.Width(80)))
+            EditorGUILayout.PropertyField(toProperty);
+            if (GUILayout.Button("Set To", GUILayout.Width(100)))
             {
                 dOTweenPunchRotation.SetToState();
             }
             GUILayout.EndHorizontal();
-            dOTweenPunchRotation.Vibrato = EditorGUILayout.IntField("Vibrato", dOTweenPunchRotation.Vibrato);
-            dOTweenPunchRotation.Elasticity = EditorGUILayout.FloatField("Elasticity", dOTweenPunchRotation.Elasticity);
+
+
+            EditorGUILayout.PropertyField(vibratoProperty);
+            EditorGUILayout.PropertyField(elasticityProperty);
+
+            if (GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
         }
 
     }

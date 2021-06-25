@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace AtoLib.UnityInspector.Editor {
+namespace Ftech.Lib.UnityInspector.Editor {
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyPropertyDrawer : PropertyDrawer {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {

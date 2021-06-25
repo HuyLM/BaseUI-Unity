@@ -1,32 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class ButtonExplorer : ButtonBase
     {
-        [Header("==== Content (No need to assign) ====")]
-        [SerializeField] private Text titleText;
         [SerializeField] private Image mainBg;
-        [SerializeField] private Image mainIcon;
-        [SerializeField] private GameObject notifyIcon;
 
         [Header("==== Sound Effect ====")]
-        [SerializeField] private bool soundClickEnable = true;
+        [SerializeField] private bool clickSoundEnable = false;
         [SerializeField] private AudioClip clickSoundEffect;
 
         [Header("==== Custom Disable State ====")]
         [SerializeField] private DisableType disableType = DisableType.NONE;
         [SerializeField] private GameObject disableMask;
-        [SerializeField] private Color disableColor = new Color(0.9f, 0.9f, 0.9f, 0.9f);
-        [SerializeField] private Material disableMat;
+        [SerializeField] private Color enableColor = Color.white;
+        [SerializeField] private Color disableColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         [SerializeField] private Material enableMat;
+        [SerializeField] private Material disableMat;
+        [SerializeField] private Sprite enableSprite;
+        [SerializeField] private Sprite disableSprite;
 
-        public enum DisableType { NONE, COLOR, MASK, MATERIAL }
+#if UNITY_EDITOR
+        public DisableType MyDisableType { get => disableType; }
+#endif
 
-        private void Awake()
+        public enum DisableType { NONE, COLOR, MASK, MATERIAL, SPRITE }
+
+        protected override void OnValidate()
         {
-            if (titleText == null)
-                titleText = GetComponentInChildren<Text>();
+            base.OnValidate();
             if (mainBg == null)
                 mainBg = GetComponent<Image>();
             if (mainBg == null)
@@ -37,7 +39,7 @@ namespace AtoLib.UI
         {
             base.InvokeOnClick();
             // TODO: Apply sound effect
-            if (!soundClickEnable)
+            if (!clickSoundEnable)
                 return;
             if (clickSoundEffect)
             {
@@ -50,7 +52,7 @@ namespace AtoLib.UI
         }
 
         #region Explore Persionality
-        public override void SetState(bool enable)
+        protected override void SetState(bool enable)
         {
             base.SetState(enable);
 
@@ -59,7 +61,7 @@ namespace AtoLib.UI
                 case DisableType.NONE:
                 break;
                 case DisableType.COLOR:
-                SetColor(enable ? Color.white : disableColor);
+                SetColor(enable ? enableColor : disableColor);
                 break;
                 case DisableType.MASK:
                 if (disableMask)
@@ -68,65 +70,27 @@ namespace AtoLib.UI
                 case DisableType.MATERIAL:
                 if (mainBg != null)
                     mainBg.material = enable ? enableMat : disableMat;
-                if (mainIcon != null)
-                    mainIcon.material = enable ? enableMat : disableMat;
                 break;
 
+                case DisableType.SPRITE:
+                {
+                    if (mainBg != null)
+                    {
+                        mainBg.sprite = enable ? enableSprite : disableSprite;
+                    }
+                    break;
+                }
                 default:
                 break;
             }
-        }
-
-        public void SetTitle(string text)
-        {
-            if (titleText)
-                titleText.text = text;
-        }
-
-        public void SetBackgroundSprite(Sprite sp)
-        {
-            if (mainBg)
-                mainBg.sprite = sp;
-        }
-
-        public void SetIconSprite(Sprite sp)
-        {
-            if (mainIcon)
-                mainIcon.sprite = sp;
         }
 
         public void SetColor(Color color)
         {
             if (mainBg)
                 mainBg.color = color;
-            if (mainIcon)
-                mainIcon.color = color;
         }
-        public void SetMaterial(bool enable)
-        {
-            if (mainBg)
-                mainBg.material = enable ? enableMat : disableMat;
-            if (mainIcon)
-                mainIcon.material = enable ? enableMat : disableMat;
-        }
-        public void SetNoti(bool show, string notiTitle = "")
-        {
-            if (!notifyIcon)
-            {
-                Debug.LogFormat(string.Format("[ButtonExplorer] Set up <color = red>notifyIcon</color> first, plz!"));
-                return;
-            }
-            notifyIcon.SetActive(show);
 
-            if (string.IsNullOrEmpty(notiTitle))
-                return;
-            var notiTitleText = notifyIcon.GetComponent<Text>();
-            if (!notiTitleText)
-                notiTitleText = notifyIcon.GetComponentInChildren<Text>();
-            if (!notiTitleText)
-                return;
-            notiTitleText.text = notiTitle;
-        }
         #endregion
     }
 }

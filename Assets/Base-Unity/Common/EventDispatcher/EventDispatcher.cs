@@ -1,7 +1,7 @@
 ﻿using System;
-using static AtoLib.Common.EventListenerBase;
+using static Ftech.Lib.Common.EventListenerBase;
 
-namespace AtoLib.Common
+namespace Ftech.Lib.Common
 {
     /// <summary>
     /// Use this when you want to dispatch a message to other listener in your system, to do reduce instance and reduce reference together.

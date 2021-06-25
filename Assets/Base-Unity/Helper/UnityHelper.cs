@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AtoLib.Helper {
+namespace Ftech.Lib.Helper {
     public static class UnityHelper {
 
         public static Vector2 Down = new Vector2(0.03f, -0.97f);

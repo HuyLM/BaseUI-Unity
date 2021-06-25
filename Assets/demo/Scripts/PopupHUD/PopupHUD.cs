@@ -1,8 +1,5 @@
-﻿using AtoLib.UI;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿
+using Ftech.Lib.UI;
 
 public class PopupHUD : HUD<PopupHUD>
 {

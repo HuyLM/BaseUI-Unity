@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace GameSystem.Common.UnityInspector.Editor {
+namespace Ftech.Lib.Common.UnityInspector.Editor.Editor {
     [CustomPropertyDrawer(typeof(SceneFieldAttribute))]
     public class SceneFieldPropertyDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

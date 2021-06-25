@@ -2,17 +2,19 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenPunchRotation : DOTweenTransition
     {
         [SerializeField] private Transform target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 punch;
         [SerializeField] private int vibrato = 10;
         [SerializeField] private float elasticity = 1f;
 
         public Transform Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Vector3 From { get => from; set => from = value; }
         public Vector3 Punch { get => punch; set => punch = value; }
         public int Vibrato { get => vibrato; set => vibrato = value; }
@@ -26,7 +28,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.rotation = Quaternion.Euler(from);
+            if (!fromCurrent)
+            {
+                target.rotation = Quaternion.Euler(from);
+            }
         }
 
         public override void CreateTween(Action onCompleted)

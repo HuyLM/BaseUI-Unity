@@ -1,9 +1,9 @@
 ﻿
-using AtoLib.InventorySystem;
+using Ftech.Lib.InventorySystem;
 using UnityEditor;
 using UnityEngine;
 
-namespace GameSystem.Common.UnityInspector.Editor
+namespace Ftech.Lib.Common.UnityInspector.Editor.Editor
 {
     [CustomPropertyDrawer(typeof(ItemFieldAttribute))]
     public class ItemFieldPropertyDrawer : PropertyDrawer

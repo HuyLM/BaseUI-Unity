@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     [CreateAssetMenu(fileName = "ItemCollector", menuName = "Data/Item/ItemDatabase/ItemCollector")]
     public class ItemCollector : ScriptableObject

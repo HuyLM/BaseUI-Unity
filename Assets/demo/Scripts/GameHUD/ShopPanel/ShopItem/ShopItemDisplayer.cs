@@ -1,8 +1,8 @@
-﻿using AtoLib.UI;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using AtoLib.InventorySystem;
+using Ftech.Lib.UI;
+using Ftech.Lib.InventorySystem;
 
 public class ShopItemDisplayer : Displayer<GameItem>
 {

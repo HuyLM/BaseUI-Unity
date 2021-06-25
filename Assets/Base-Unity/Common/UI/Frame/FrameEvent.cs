@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace AtoLib.UI {
+namespace Ftech.Lib.UI {
     [System.Serializable]
     public class FrameEvent : UnityEvent<Frame> { }
 }

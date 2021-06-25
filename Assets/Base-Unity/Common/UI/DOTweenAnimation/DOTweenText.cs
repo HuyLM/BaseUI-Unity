@@ -3,11 +3,12 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenText : DOTweenTransition
     {
         [SerializeField] private Text target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private string from;
         [SerializeField] private string to;
         [SerializeField] private bool richTextEnabled = true;
@@ -15,6 +16,7 @@ namespace AtoLib.UI
         [SerializeField] private string scrambleChars;
 
         public Text Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public string From { get => from; set => from = value; }
         public string To { get => to; set => to = value; }
         public bool RichTextEnabled { get => richTextEnabled; set => richTextEnabled = value; }
@@ -33,7 +35,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.text = from;
+            if (!fromCurrent)
+            {
+                target.text = from;
+            }
         }
 
         public override void CreateTween(Action onCompleted)

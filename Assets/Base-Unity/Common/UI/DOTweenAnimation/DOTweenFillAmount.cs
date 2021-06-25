@@ -3,15 +3,17 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenFillAmount : DOTweenTransition
     {
         [SerializeField] private Image target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private float from;
         [SerializeField] private float to;
 
         public Image Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public float From { get => from; set => from = value; }
         public float To { get => to; set => to = value; }
 
@@ -22,7 +24,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.fillAmount = from;
+            if (!fromCurrent)
+            {
+                target.fillAmount = from;
+            }
         }
 
 

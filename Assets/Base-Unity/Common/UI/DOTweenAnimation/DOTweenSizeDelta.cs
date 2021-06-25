@@ -2,16 +2,18 @@
 using System;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenSizeDelta : DOTweenTransition
     {
         [SerializeField] private RectTransform target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private Vector2 from;
         [SerializeField] private Vector2 to;
         [SerializeField] private bool snapping = false;
 
         public RectTransform Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Vector2 From { get => from; set => from = value; }
         public Vector2 To { get => to; set => to = value; }
         public bool Snapping { get => snapping; set => snapping = value; }
@@ -24,7 +26,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.sizeDelta = from;
+            if (!fromCurrent)
+            {
+                target.sizeDelta = from;
+            }
         }
 
         public override void CreateTween(Action onCompleted)

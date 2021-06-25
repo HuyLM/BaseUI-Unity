@@ -1,6 +1,6 @@
 ﻿
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     public static class ConstantItemID
     {

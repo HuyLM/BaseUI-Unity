@@ -1,38 +1,56 @@
-﻿using UnityEditor;
+﻿using Ftech.Lib.UI;
+using UnityEditor;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [CustomEditor(typeof(DOTweenLocalRotate))]
     public class DOTweenLocalRotateInspector : DOTweenTransitionInspector
     {
         private DOTweenLocalRotate dOTweenLocalRotate;
+        private SerializedProperty targetProperty;
+        private SerializedProperty fromCurrentProperty;
+        private SerializedProperty fromProperty;
+        private SerializedProperty toProperty;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             dOTweenLocalRotate = transition as DOTweenLocalRotate;
+            targetProperty = serializedObject.FindProperty("target");
+            fromCurrentProperty = serializedObject.FindProperty("fromCurrent");
+            fromProperty = serializedObject.FindProperty("from");
+            toProperty = serializedObject.FindProperty("to");
         }
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            dOTweenLocalRotate.Target = (Transform)EditorGUILayout.ObjectField("Target", dOTweenLocalRotate.Target, typeof(Transform), true);
-            GUILayout.BeginHorizontal();
-            dOTweenLocalRotate.From = EditorGUILayout.Vector3Field("From", dOTweenLocalRotate.From);
-            if (GUILayout.Button("Set From", GUILayout.Width(80)))
-            {
-                dOTweenLocalRotate.SetFromState();
-            }
-            GUILayout.EndHorizontal();
+            EditorGUILayout.PropertyField(targetProperty);
 
+            EditorGUILayout.PropertyField(fromCurrentProperty);
+            if (!dOTweenLocalRotate.FromCurrent)
+            {
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(fromProperty);
+                if (GUILayout.Button("Set From", GUILayout.Width(100)))
+                {
+                    dOTweenLocalRotate.SetFromState();
+                }
+                GUILayout.EndHorizontal();
+            }
             GUILayout.BeginHorizontal();
-            dOTweenLocalRotate.To = EditorGUILayout.Vector3Field("To", dOTweenLocalRotate.To);
-            if (GUILayout.Button("Set To", GUILayout.Width(80)))
+            EditorGUILayout.PropertyField(toProperty);
+            if (GUILayout.Button("Set To", GUILayout.Width(100)))
             {
                 dOTweenLocalRotate.SetToState();
             }
             GUILayout.EndHorizontal();
+
+            if (GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
         }
     }
 }

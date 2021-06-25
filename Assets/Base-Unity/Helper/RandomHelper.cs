@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace AtoLib.Helper {
+namespace Ftech.Lib.Helper {
     public static class RandomHelper {
 
         public static T RandomInCollection<T>(List<T> list) {

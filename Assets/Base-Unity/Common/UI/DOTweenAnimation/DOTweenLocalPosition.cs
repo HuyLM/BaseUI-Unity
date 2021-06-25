@@ -2,15 +2,17 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenLocalPosition : DOTweenTransition
     {
         [SerializeField] private Transform target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 to;
 
         public Transform Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Vector3 From { get => from; set => from = value; }
         public Vector3 To { get => to; set => to = value; }
 
@@ -21,7 +23,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.localPosition = from;
+            if (!fromCurrent)
+            {
+                target.localPosition = from;
+            }
         }
 
         public override void CreateTween(Action onCompleted)

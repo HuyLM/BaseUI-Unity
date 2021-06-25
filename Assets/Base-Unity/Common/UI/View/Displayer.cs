@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public abstract class Displayer<TModel> : MonoBehaviour
     {

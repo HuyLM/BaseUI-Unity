@@ -1,6 +1,6 @@
-﻿using AtoLib.Common;
-using AtoLib.InventorySystem;
-using AtoLib.UI;
+﻿using Ftech.Lib.Common;
+using Ftech.Lib.InventorySystem;
+using Ftech.Lib.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

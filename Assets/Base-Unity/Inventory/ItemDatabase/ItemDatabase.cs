@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     [CreateAssetMenu(fileName = "ItemDatabase", menuName = "Data/Item/ItemDatabase1")]
     public class ItemDatabase : ScriptableObject
@@ -118,6 +118,7 @@ namespace AtoLib.InventorySystem
         {
             return Instance.itemDictionary.ContainsKey(id);
         }
+
 
 #if UNITY_EDITOR
         public class ItemTypeName

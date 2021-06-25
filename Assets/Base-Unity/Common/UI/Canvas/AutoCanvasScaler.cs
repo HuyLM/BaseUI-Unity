@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AtoLib.UI {
+namespace Ftech.Lib.UI {
     [RequireComponent(typeof(CanvasScaler))]
     public class AutoCanvasScaler : MonoBehaviour {
         [SerializeField] private CanvasScaler canvasScaler;

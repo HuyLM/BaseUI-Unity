@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "Ato/UI/Fast-Default" 
+Shader "Ftech/UI/Fast-Default" 
 {
 	Properties 
 	{		

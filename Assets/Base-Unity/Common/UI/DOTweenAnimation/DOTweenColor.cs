@@ -3,15 +3,17 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenColor : DOTweenTransition
     {
         [SerializeField] private Graphic target;
-        [SerializeField] private Color from;
-        [SerializeField] private Color to;
+        [SerializeField] private bool fromCurrent;
+        [SerializeField] private Color from = Color.white;
+        [SerializeField] private Color to = Color.black;
 
         public Graphic Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Color From { get => from; set => from = value; }
         public Color To { get => to; set => to = value; }
 
@@ -22,7 +24,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.color = from;
+            if (!fromCurrent)
+            {
+                target.color = from;
+            }
         }
 
         public override void CreateTween(Action onCompleted)

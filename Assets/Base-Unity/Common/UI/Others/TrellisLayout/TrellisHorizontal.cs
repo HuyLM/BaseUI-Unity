@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.UI;
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class TrellisHorizontal : MonoBehaviour
     {

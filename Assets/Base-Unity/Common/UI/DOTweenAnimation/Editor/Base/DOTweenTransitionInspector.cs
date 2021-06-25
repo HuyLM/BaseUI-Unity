@@ -1,20 +1,40 @@
 ﻿using DG.Tweening;
+using Ftech.Lib.UI;
 using UnityEditor;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [CustomEditor(typeof(DOTweenTransition))]
     public class DOTweenTransitionInspector : Editor
     {
         private bool isPlaying;
         protected DOTweenTransition transition;
+        private SerializedProperty delayProperty;
+        private SerializedProperty durationProperty;
+        private SerializedProperty isSpeedBaseProperty;
+        private SerializedProperty ignoreTimeScaleProperty;
+        private SerializedProperty loopNumberProperty;
+        private SerializedProperty loopTypeProperty;
+        private SerializedProperty easeProperty;
+        private SerializedProperty curveProperty;
+
 
 
         protected virtual void OnEnable()
         {
             isPlaying = false;
             transition = target as DOTweenTransition;
+
+            delayProperty = serializedObject.FindProperty("delay");
+            durationProperty = serializedObject.FindProperty("duration");
+            isSpeedBaseProperty = serializedObject.FindProperty("isSpeedBase");
+            ignoreTimeScaleProperty = serializedObject.FindProperty("ignoreTimeScale");
+            loopNumberProperty = serializedObject.FindProperty("loopNumber");
+            loopTypeProperty = serializedObject.FindProperty("loopType");
+            easeProperty = serializedObject.FindProperty("ease");
+            curveProperty = serializedObject.FindProperty("curve");
+
         }
 
         protected virtual void OnDisable()
@@ -46,31 +66,31 @@ namespace AtoLib.UI
             //////
             GUILayout.Space(20);
             // Delay
-            transition.Delay = EditorGUILayout.FloatField("Delay", transition.Delay);
+            EditorGUILayout.PropertyField(delayProperty);
             // Duration
-            transition.Duration = EditorGUILayout.FloatField("Duration", transition.Duration);
+            string label = transition.IsSpeedBase ? "Speed" : "Duration";
+            EditorGUILayout.PropertyField(durationProperty, new GUIContent(label));
+            // Is Speed Base
+            EditorGUILayout.PropertyField(isSpeedBaseProperty);
             //  IgnoreTimeScale
-            transition.IgnoreTimeScale = EditorGUILayout.Toggle("Ignore Timescale", transition.IgnoreTimeScale);
+            EditorGUILayout.PropertyField(ignoreTimeScaleProperty);
 
             // LoopNumber
-            int loopNumber = EditorGUILayout.DelayedIntField("Loop Number", transition.LoopNumber);
-            if (loopNumber != 0)
-            {
-                transition.LoopNumber = loopNumber;
-            }
+            EditorGUILayout.PropertyField(loopNumberProperty);
             // LoopType
-            if (transition.LoopNumber != 1)
+            if (transition.LoopNumber != 1 && transition.LoopNumber != 0)
             {
-                transition.LoopType = (LoopType)EditorGUILayout.EnumPopup("Loop Type", transition.LoopType);
+                EditorGUILayout.PropertyField(loopTypeProperty);
             }
             // Ease
-            transition.Ease = (Ease)EditorGUILayout.EnumPopup("Ease", transition.Ease);
+            EditorGUILayout.PropertyField(easeProperty);
             // Curve
             if (transition.Ease == Ease.INTERNAL_Custom)
             {
-                transition.Curve = EditorGUILayout.CurveField("Curve", transition.Curve);
+                EditorGUILayout.PropertyField(curveProperty);
             }
             GUILayout.Space(20);
+
         }
 
         private void Play()

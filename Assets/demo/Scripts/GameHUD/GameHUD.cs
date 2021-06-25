@@ -1,7 +1,4 @@
-﻿using AtoLib.UI;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Ftech.Lib.UI;
 
 public class GameHUD : HUD<GameHUD>
 {

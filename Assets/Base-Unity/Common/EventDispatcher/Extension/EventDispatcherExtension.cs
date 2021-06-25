@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AtoLib.Common
+namespace Ftech.Lib.Common
 {
     public static class EventDispatcherExtension
     {

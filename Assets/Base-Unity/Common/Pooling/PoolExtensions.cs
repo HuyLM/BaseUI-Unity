@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AtoLib.Common
+namespace Ftech.Lib.Common
 {
     public static class PoolExtensions
     {

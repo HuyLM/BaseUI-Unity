@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
-namespace AtoLib {
-
+namespace Ftech.Lib
+{
     public class SaveLoadListener : MonoBehaviour {
         private bool isLoaded;
         private void Awake() {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-namespace AtoLib.Helper {
+namespace Ftech.Lib.Helper {
     public class Yielder {
         private static readonly Dictionary<float, object> TimeInterval = new Dictionary<float, object>(100);
 

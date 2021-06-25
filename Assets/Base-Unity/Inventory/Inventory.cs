@@ -1,10 +1,10 @@
-﻿using AtoLib.Common;
-using GameSystem.Common.UnityInspector;
+﻿using Ftech.Lib.Common;
+using Ftech.Lib.Common.UnityInspector.Editor;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     [CreateAssetMenu(fileName = "NewInventory", menuName = "Data/Item/Inventory")]
     public class Inventory : SingletonScriptableObject<Inventory>
@@ -25,6 +25,7 @@ namespace AtoLib.InventorySystem
 
         private readonly Dictionary<int, ItemSlot> itemDictionary = new Dictionary<int, ItemSlot>();
         [ItemField] private List<int> infiniteItemIds = new List<int>();
+
 
         public IEnumerable<ItemSlot> GetAllItem()
         {
@@ -182,5 +183,7 @@ namespace AtoLib.InventorySystem
                 }
             }
         }
+
+
     }
 }

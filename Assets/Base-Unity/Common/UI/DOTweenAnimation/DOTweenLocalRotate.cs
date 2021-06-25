@@ -2,16 +2,18 @@
 using System;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenLocalRotate : DOTweenTransition
     {
         [SerializeField] private Transform target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 to;
         [SerializeField] private RotateMode mode = RotateMode.Fast;
 
         public Transform Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Vector3 From { get => from; set => from = value; }
         public Vector3 To { get => to; set => to = value; }
         public RotateMode Mode { get => mode; set => mode = value; }
@@ -24,7 +26,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.localRotation = Quaternion.Euler(from);
+            if (!fromCurrent)
+            {
+                target.localRotation = Quaternion.Euler(from);
+            }
         }
 
 

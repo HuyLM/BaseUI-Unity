@@ -2,18 +2,20 @@
 using System;
 using DG.Tweening;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public abstract class DOTweenTransition : MonoBehaviour
     {
         [SerializeField, Range(0f, 10f)] private float delay = 0f;
         [SerializeField, Range(0f, 10f)] private float duration = 0.5f;
+        [SerializeField] private bool isSpeedBase;
         [SerializeField] private bool ignoreTimeScale = false;
         [SerializeField] private int loopNumber = 1;
         [SerializeField] private LoopType loopType = LoopType.Restart;
         [SerializeField] private Ease ease = Ease.Linear;
         [SerializeField] private AnimationCurve curve;
 
+        public bool IsSpeedBase { get => isSpeedBase; set => isSpeedBase = value; }
         public float Duration { get => duration; set => duration = value; }
         public float Delay { get => delay; set => delay = value; }
         public float TotalDuration { get => Duration * loopNumber + Delay; }
@@ -45,7 +47,7 @@ namespace AtoLib.UI
         {
             if (Tween != null)
             {
-                Tween.SetUpdate(IgnoreTimeScale)
+                Tween.SetSpeedBased(isSpeedBase).SetUpdate(IgnoreTimeScale)
                             .SetDelay(Delay).OnComplete(() =>
                             {
                                 onCompleted?.Invoke();

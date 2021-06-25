@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-namespace AtoLib.Common
+namespace Ftech.Lib.Common
 {
     public sealed class PoolManager : SingletonFreeAlive<PoolManager>
     {
@@ -17,14 +17,14 @@ namespace AtoLib.Common
                 return;
             }
             List<GameObject> list = null;
-            if (SingletonFree<PoolManager>.Instance.pooledObjects.ContainsKey(prefab))
+            if (pooledObjects.ContainsKey(prefab))
             {
-                SingletonFree<PoolManager>.Instance.pooledObjects.TryGetValue(prefab, out list);
+                pooledObjects.TryGetValue(prefab, out list);
             }
             if (list == null)
             {
                 list = new List<GameObject>();
-                SingletonFree<PoolManager>.Instance.pooledObjects.Add(prefab, list);
+               pooledObjects.Add(prefab, list);
             }
             if (initialPoolSize <= list.Count)
             {
@@ -63,9 +63,9 @@ namespace AtoLib.Common
             }
             GameObject gameObject = null;
             List<GameObject> list;
-            if (!SingletonFree<PoolManager>.Instance.pooledObjects.TryGetValue(prefab, out list))
+            if (!pooledObjects.TryGetValue(prefab, out list))
             {
-                return SingletonFree<PoolManager>.Instance.GetObject(gameObject, prefab, parent, position, scale, rotation, createPoolIfNeed, createPoolIfNeed);
+                return GetObject(gameObject, prefab, parent, position, scale, rotation, createPoolIfNeed, createPoolIfNeed);
             }
             if (list.Count > 0)
             {
@@ -76,10 +76,10 @@ namespace AtoLib.Common
                 }
                 if (gameObject != null)
                 {
-                    return SingletonFree<PoolManager>.Instance.GetObject(gameObject, prefab, parent, position, scale, rotation, true, false);
+                    return GetObject(gameObject, prefab, parent, position, scale, rotation, true, false);
                 }
             }
-            return SingletonFree<PoolManager>.Instance.GetObject(gameObject, prefab, parent, position, scale, rotation, true, false);
+            return GetObject(gameObject, prefab, parent, position, scale, rotation, true, false);
         }
         private GameObject GetObject(GameObject obj, GameObject prefab, Transform parent, Vector3 position, Vector3 scale, Quaternion rotation, bool addToSpawns = true, bool createPool = false)
         {
@@ -96,9 +96,9 @@ namespace AtoLib.Common
             obj.transform.localScale = (scale);
             obj.transform.localRotation = (rotation);
             obj.SetActive(true);
-            if (addToSpawns && !SingletonFree<PoolManager>.Instance.spawnedObjects.ContainsKey(obj))
+            if (addToSpawns && !spawnedObjects.ContainsKey(obj))
             {
-                SingletonFree<PoolManager>.Instance.spawnedObjects.Add(obj, prefab);
+                spawnedObjects.Add(obj, prefab);
             }
             IPoolable component = obj.GetComponent<IPoolable>();
             if (component != null)
@@ -114,7 +114,7 @@ namespace AtoLib.Common
         public void Recycle(GameObject obj)
         {
             GameObject prefab;
-            if (SingletonFree<PoolManager>.Instance.spawnedObjects.TryGetValue(obj, out prefab))
+            if (spawnedObjects.TryGetValue(obj, out prefab))
             {
                 this.Recycle(obj, prefab);
                 return;
@@ -124,8 +124,8 @@ namespace AtoLib.Common
         }
         private void Recycle(GameObject obj, GameObject prefab)
         {
-            SingletonFree<PoolManager>.Instance.pooledObjects[prefab].Add(obj);
-            SingletonFree<PoolManager>.Instance.spawnedObjects.Remove(obj);
+            pooledObjects[prefab].Add(obj);
+            spawnedObjects.Remove(obj);
             obj.transform.SetParent(transform);
             IPoolable component = obj.GetComponent<IPoolable>();
             if (component != null)
@@ -141,7 +141,7 @@ namespace AtoLib.Common
         public void RecycleAll(GameObject prefab)
         {
             List<GameObject> list = new List<GameObject>();
-            foreach (KeyValuePair<GameObject, GameObject> current in SingletonFree<PoolManager>.Instance.spawnedObjects)
+            foreach (KeyValuePair<GameObject, GameObject> current in spawnedObjects)
             {
                 if (current.Value == prefab)
                 {
@@ -156,7 +156,7 @@ namespace AtoLib.Common
         public void RecycleAll()
         {
             List<GameObject> list = new List<GameObject>();
-            list.AddRange(SingletonFree<PoolManager>.Instance.spawnedObjects.Keys);
+            list.AddRange(spawnedObjects.Keys);
             for (int i = 0; i < list.Count; i++)
             {
                 this.Recycle(list[i]);
@@ -179,14 +179,14 @@ namespace AtoLib.Common
         /// </summary>
         public bool HasPooled(GameObject obj)
         {
-            return SingletonFree<PoolManager>.Instance.pooledObjects.ContainsKey(obj);
+            return pooledObjects.ContainsKey(obj);
         }
         /// <summary>
         /// To check if gameobject has been spawned (currently active in scene)
         /// </summary>
         public bool HasSpawned(GameObject obj)
         {
-            return SingletonFree<PoolManager>.Instance.spawnedObjects.ContainsKey(obj);
+            return spawnedObjects.ContainsKey(obj);
         }
         /// <summary>
         /// Destroy gameobject which is register with pool (include pooled and spawned)
@@ -214,7 +214,7 @@ namespace AtoLib.Common
         public void DestroyPooled(GameObject prefab)
         {
             List<GameObject> list;
-            if (SingletonFree<PoolManager>.Instance.pooledObjects.TryGetValue(prefab, out list))
+            if (pooledObjects.TryGetValue(prefab, out list))
             {
                 for (int i = 0; i < list.Count; i++)
                 {
@@ -240,7 +240,7 @@ namespace AtoLib.Common
             {
                 this.RecycleAll();
                 List<GameObject> list = new List<GameObject>();
-                list.AddRange(SingletonFree<PoolManager>.Instance.pooledObjects.Keys);
+                list.AddRange(pooledObjects.Keys);
                 for (int i = 0; i < list.Count; i++)
                 {
                     this.DestroyPooled(list[i]);

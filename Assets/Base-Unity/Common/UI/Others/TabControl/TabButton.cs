@@ -1,8 +1,7 @@
-﻿using AtoLib.UI;
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class TabButton : MonoBehaviour
     {
@@ -19,7 +18,7 @@ namespace AtoLib.UI
 
         public virtual void SetActiveTab(bool isActive)
         {
-            btnTab.SetState(isActive);
+            btnTab.interactable = (isActive);
         }
 
         private void OnTabButtonClicked()

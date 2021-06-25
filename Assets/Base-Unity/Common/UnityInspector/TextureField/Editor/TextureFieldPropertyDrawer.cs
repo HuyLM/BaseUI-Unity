@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace GameSystem.Common.UnityInspector.Editor {
+namespace Ftech.Lib.Common.UnityInspector.Editor.Editor {
     [CustomPropertyDrawer(typeof(TextureFieldAttribute))]
     public class TextureFieldPropertyDrawer : PropertyDrawer {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {

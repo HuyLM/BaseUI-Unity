@@ -1,8 +1,7 @@
-﻿using AtoLib;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-namespace AtoLib.UI {
+namespace Ftech.Lib.UI {
     public class HUDManager : SingletonFreeAlive<HUDManager> {
 
         private class HUDComparer : IComparer<HUD> {

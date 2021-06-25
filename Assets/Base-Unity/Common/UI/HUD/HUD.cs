@@ -1,9 +1,9 @@
-﻿using AtoLib.UnityInspector;
+﻿using Ftech.Lib.UnityInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [DisallowMultipleComponent]
     public class HUD : MonoBehaviour

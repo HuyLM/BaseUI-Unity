@@ -1,11 +1,14 @@
 ﻿
-using AtoLib.Common;
-
-public static class EventKey
+namespace Ftech.Lib.Common
 {
-    public struct OnInventoryChange : IEventParams
+
+    public partial class EventKey
     {
-        public int ID;
+        public struct OnInventoryChange : IEventParams
+        {
+            public int ID;
+        }
+
     }
 
 }

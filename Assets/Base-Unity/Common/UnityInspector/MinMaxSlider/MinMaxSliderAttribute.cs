@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameSystem.Common.UnityInspector {
+namespace Ftech.Lib.Common.UnityInspector.Editor {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public class MinMaxSliderAttribute : PropertyAttribute {
         public readonly float minValue;

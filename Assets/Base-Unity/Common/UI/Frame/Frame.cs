@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [DisallowMultipleComponent]
     public class Frame : MonoBehaviour

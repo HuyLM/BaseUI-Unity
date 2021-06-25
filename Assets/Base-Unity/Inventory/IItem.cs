@@ -1,8 +1,8 @@
-﻿using AtoLib.Common;
+﻿using Ftech.Lib.Common;
 using UnityEngine;
 
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     public interface IItem : IEventParams
     {

@@ -1,7 +1,7 @@
 ﻿
 using System;
 using UnityEngine;
-namespace AtoLib.Helper
+namespace Ftech.Lib.Helper
 {
     [Serializable]
     public struct RangeIntValue

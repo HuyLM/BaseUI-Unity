@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using GameSystem.Common.UnityInspector;
 using UnityEngine.Serialization;
+using Ftech.Lib.Common.UnityInspector.Editor;
 
-
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     [System.Serializable]
     public class ItemSlot : IItemInstance

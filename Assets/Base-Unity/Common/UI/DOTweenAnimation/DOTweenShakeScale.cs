@@ -2,11 +2,12 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenShakeScale : DOTweenTransition
     {
         [SerializeField] private Transform target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private Vector3 from;
         [SerializeField] private Vector3 strength;
         [SerializeField] private int vibrato = 10;
@@ -14,6 +15,7 @@ namespace AtoLib.UI
         [SerializeField] private bool fadeOut = false;
 
         public Transform Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Vector3 From { get => from; set => from = value; }
         public Vector3 Strength { get => strength; set => strength = value; }
         public int Vibrato { get => vibrato; set => vibrato = value; }
@@ -27,7 +29,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.localScale = from;
+            if (!fromCurrent)
+            {
+                target.localScale = from;
+            }
         }
 
 

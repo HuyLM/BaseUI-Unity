@@ -1,39 +1,58 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     [CustomEditor(typeof(DOTweenSizeDelta))]
     public class DOTweenSizeDeltaInspector : DOTweenTransitionInspector
     {
         private DOTweenSizeDelta dOTweenSizeDelta;
+        private SerializedProperty targetProperty;
+        private SerializedProperty fromCurrentProperty;
+        private SerializedProperty fromProperty;
+        private SerializedProperty toProperty;
+        private SerializedProperty snappingProperty;
 
         protected override void OnEnable()
         {
             base.OnEnable();
             dOTweenSizeDelta = transition as DOTweenSizeDelta;
+            targetProperty = serializedObject.FindProperty("target");
+            fromCurrentProperty = serializedObject.FindProperty("fromCurrent");
+            fromProperty = serializedObject.FindProperty("from");
+            toProperty = serializedObject.FindProperty("to");
+            snappingProperty = serializedObject.FindProperty("snapping");
         }
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            dOTweenSizeDelta.Target = (RectTransform)EditorGUILayout.ObjectField("Target", dOTweenSizeDelta.Target, typeof(RectTransform), true);
-            GUILayout.BeginHorizontal();
-            dOTweenSizeDelta.From = EditorGUILayout.Vector3Field("From", dOTweenSizeDelta.From);
-            if (GUILayout.Button("Set From", GUILayout.Width(80)))
-            {
-                dOTweenSizeDelta.SetFromState();
-            }
-            GUILayout.EndHorizontal();
+            EditorGUILayout.PropertyField(targetProperty);
 
+            EditorGUILayout.PropertyField(fromCurrentProperty);
+            if (!dOTweenSizeDelta.FromCurrent)
+            {
+                GUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(fromProperty);
+                if (GUILayout.Button("Set From", GUILayout.Width(100)))
+                {
+                    dOTweenSizeDelta.SetFromState();
+                }
+                GUILayout.EndHorizontal();
+            }
             GUILayout.BeginHorizontal();
-            dOTweenSizeDelta.To = EditorGUILayout.Vector3Field("To", dOTweenSizeDelta.To);
-            if (GUILayout.Button("Set To", GUILayout.Width(80)))
+            EditorGUILayout.PropertyField(toProperty);
+            if (GUILayout.Button("Set To", GUILayout.Width(100)))
             {
                 dOTweenSizeDelta.SetToState();
             }
             GUILayout.EndHorizontal();
-            dOTweenSizeDelta.Snapping = EditorGUILayout.Toggle("Snapping", dOTweenSizeDelta.Snapping);
+            EditorGUILayout.PropertyField(snappingProperty);
+
+            if (GUI.changed)
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
         }
     }
 }

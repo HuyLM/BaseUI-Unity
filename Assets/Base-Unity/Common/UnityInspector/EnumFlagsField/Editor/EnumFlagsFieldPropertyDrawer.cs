@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace GameSystem.Common.UnityInspector.Editor {
+namespace Ftech.Lib.Common.UnityInspector.Editor.Editor {
     [CustomPropertyDrawer(typeof(EnumFlagsFieldAttribute))]
     public class EnumFlagsFieldPropertyDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

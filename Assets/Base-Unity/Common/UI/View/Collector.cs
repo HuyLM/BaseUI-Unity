@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public abstract class Collector<T> : MonoBehaviour
     {

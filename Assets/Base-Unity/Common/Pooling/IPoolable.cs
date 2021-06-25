@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AtoLib.Common
+namespace Ftech.Lib.Common
 {
     /// <summary>
     /// inherit this interface to mark the game object is poolable, it mean the gameobject will be add to pooled when recycle, else it will be destroy.

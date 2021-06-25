@@ -5,7 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 
-namespace GameSystem.Common.UnityInspector {
+namespace Ftech.Lib.Common.UnityInspector.Editor {
     [CustomPropertyDrawer(typeof(ConstantFieldAttribute))]
     public class ConstantFieldpropertyDrawer : PropertyDrawer {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {

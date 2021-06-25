@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace AtoLib.Helper
+namespace Ftech.Lib.Helper
 {
     public static class StringHelper 
     {

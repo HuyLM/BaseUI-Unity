@@ -2,15 +2,16 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-namespace AtoLib.UI
+using UnityEngine.UI;
+
+namespace Ftech.Lib.UI
 {
-    public class ButtonBase : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
+    PopupHUD
+    public class ButtonBase : Button
     {
         #region Button Base
         [SerializeField] protected float clickScale = 0.95f;
-        public bool invokeOnce = false;
-        public bool interactable = true;
-        public UnityEvent onClick;
+        [SerializeField] protected bool invokeOnce = false;
 
         const float ZoomOutTime = 0.1f;
         const float ZoomInTime = 0.1f;
@@ -19,13 +20,29 @@ namespace AtoLib.UI
         bool invoked = false;
         bool pointerDown = false;
 
-        protected void Start()
+        protected override void DoStateTransition(SelectionState state, bool instant)
         {
+            base.DoStateTransition(state, instant);
+            if (state == SelectionState.Disabled)
+            {
+                SetState(false);
+            }
+            else
+            {
+                SetState(true);
+            }
+
+        }
+
+        protected override void Start()
+        {
+            base.Start();
             originScale = transform.localScale;
         }
 
-        protected void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             ResetInvokeState();
         }
 
@@ -34,9 +51,8 @@ namespace AtoLib.UI
             invoked = false;
         }
 
-        public virtual void SetState(bool enable)
+        protected virtual void SetState(bool enable)
         {
-            interactable = enable;
         }
 
         public void AddListener(UnityAction action, bool resetAll = false)
@@ -48,8 +64,9 @@ namespace AtoLib.UI
             onClick.AddListener(action);
         }
 
-        public void OnPointerDown(PointerEventData eventData)
+        public override void OnPointerDown(PointerEventData eventData)
         {
+            base.OnPointerDown(eventData);
             //if (!EventSystem.current.IsPointerOverGameObject()) return;
             pointerDown = true;
             if (interactable)
@@ -58,8 +75,9 @@ namespace AtoLib.UI
             }
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public override void OnPointerClick(PointerEventData eventData)
         {
+            base.OnPointerClick(eventData);
             if (interactable && (!invokeOnce || !invoked))
             {
                 invoked = true;
@@ -67,8 +85,9 @@ namespace AtoLib.UI
             }
         }
 
-        public void OnPointerUp(PointerEventData eventData)
+        public override void OnPointerUp(PointerEventData eventData)
         {
+            base.OnPointerUp(eventData);
             if (!pointerDown)
                 return;
 
@@ -85,8 +104,6 @@ namespace AtoLib.UI
 
         protected virtual void InvokeOnClick()
         {
-            if (onClick != null)
-                onClick.Invoke();
         }
 
         IEnumerator StartClick()
@@ -113,6 +130,5 @@ namespace AtoLib.UI
             }
         }
         #endregion
-
     }
 }

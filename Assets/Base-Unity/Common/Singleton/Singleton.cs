@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AtoLib
+namespace Ftech.Lib
 {
     #region Normal class - NONE MonoBehaviour
     /// <summary> 
@@ -20,7 +20,7 @@ namespace AtoLib
         {
             get
             {
-                return Singleton<T>.__instance != null;
+                return __instance != null;
             }
         }
         /// <summary> 
@@ -31,12 +31,12 @@ namespace AtoLib
         {
             get
             {
-                if (Singleton<T>.__instance != null)
+                if (__instance != null)
                 {
-                    return Singleton<T>.__instance;
+                    return __instance;
                 }
-                Singleton<T>.__instance = Activator.CreateInstance<T>();
-                return Singleton<T>.__instance;
+                __instance = Activator.CreateInstance<T>();
+                return __instance;
             }
         }
         /// <summary>
@@ -73,12 +73,12 @@ namespace AtoLib
         /// </summary>
         public void Dispose()
         {
-            if (Singleton<T>.__instance == null)
+            if (__instance == null)
             {
                 return;
             }
             this.OnDispose();
-            Singleton<T>.__instance = default(T);
+            __instance = default(T);
             GC.SuppressFinalize(this);
             //Debug.Log("[Singleton][" + typeof(T).Name + "] Destroyed.", Logs.Settings.CoreLogEnable, Logs.Color.Green);
         }
@@ -272,9 +272,29 @@ namespace AtoLib
             get
             {
                 if (!_instance)
+                {
                     _instance = Resources.FindObjectsOfTypeAll<T>()[0];
+                }
                 return _instance;
             }
+        }
+
+        protected virtual void Awake()
+        {
+            if (_instance == null)
+                _instance = this as T;
+            else if (this != _instance)
+            {
+                return;
+            }
+
+            OnAwake();
+        }
+
+
+        protected virtual void OnAwake()
+        {
+
         }
     }
     #endregion

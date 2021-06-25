@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using GameSystem.Common.UnityInspector;
+﻿using Ftech.Lib.Common.UnityInspector.Editor;
+using UnityEngine;
 
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     [CreateAssetMenu(fileName = "NewItem", menuName = "Data/Item/ItemData")]
     public class ItemData : ScriptableObject, IItem

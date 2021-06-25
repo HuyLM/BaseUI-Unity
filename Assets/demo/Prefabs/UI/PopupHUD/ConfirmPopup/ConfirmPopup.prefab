@@ -297,8 +297,8 @@ MonoBehaviour:
   resumeAnimation: {fileID: 0}
   tileText: {fileID: 3102614273834614626}
   messageText: {fileID: 4997555684180999971}
-  closeTap: {fileID: 0}
-  closeButton: {fileID: 0}
+  closeTap: {fileID: 4997555685335246999}
+  closeButton: {fileID: 4997555685569752383}
   closeText: {fileID: 0}
   btnConfirm: {fileID: 4997555685335246999}
   btnCancel: {fileID: 4997555685569752383}
@@ -929,23 +929,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332912af4e6d97044827c6bf1d3b1258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickScale: 0.95
-  invokeOnce: 0
-  interactable: 1
-  onClick:
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  titleText: {fileID: 0}
-  mainBg: {fileID: 0}
-  mainIcon: {fileID: 0}
-  notifyIcon: {fileID: 0}
-  soundClickEnable: 1
+  clickScale: 0.95
+  invokeOnce: 0
+  mainBg: {fileID: 4997555685335246998}
+  clickSoundEnable: 0
   clickSoundEffect: {fileID: 0}
   disableType: 0
   disableMask: {fileID: 0}
-  disableColor: {r: 0.9, g: 0.9, b: 0.9, a: 0.9}
-  disableMat: {fileID: 0}
+  enableColor: {r: 1, g: 1, b: 1, a: 1}
+  disableColor: {r: 0, g: 0, b: 0, a: 1}
   enableMat: {fileID: 0}
+  disableMat: {fileID: 0}
+  enableSprite: {fileID: 0}
+  disableSprite: {fileID: 0}
 --- !u!1 &4997555685569752381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,20 +1056,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332912af4e6d97044827c6bf1d3b1258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickScale: 0.95
-  invokeOnce: 0
-  interactable: 1
-  onClick:
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4997555685569752382}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  titleText: {fileID: 0}
-  mainBg: {fileID: 0}
-  mainIcon: {fileID: 0}
-  notifyIcon: {fileID: 0}
-  soundClickEnable: 1
+  clickScale: 0.95
+  invokeOnce: 0
+  mainBg: {fileID: 4997555685569752382}
+  clickSoundEnable: 0
   clickSoundEffect: {fileID: 0}
   disableType: 0
   disableMask: {fileID: 0}
-  disableColor: {r: 0.9, g: 0.9, b: 0.9, a: 0.9}
-  disableMat: {fileID: 0}
+  enableColor: {r: 1, g: 1, b: 1, a: 1}
+  disableColor: {r: 0, g: 0, b: 0, a: 1}
   enableMat: {fileID: 0}
+  disableMat: {fileID: 0}
+  enableSprite: {fileID: 0}
+  disableSprite: {fileID: 0}

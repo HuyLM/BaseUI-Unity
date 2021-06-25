@@ -1,4 +1,5 @@
-﻿using AtoLib.InventorySystem;
+﻿using Ftech.Lib;
+using Ftech.Lib.InventorySystem;
 using System;
 using UnityEngine;
 

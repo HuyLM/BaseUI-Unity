@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using AtoLib.UI;
+using Ftech.Lib.UI;
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     public class ItemDisplayer : Displayer<IItemInstance>
     {

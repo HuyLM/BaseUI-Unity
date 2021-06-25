@@ -1,11 +1,11 @@
 ﻿
-using AtoLib.Helper;
+using Ftech.Lib.Helper;
 using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class BaseProgressBar : MonoBehaviour
     {

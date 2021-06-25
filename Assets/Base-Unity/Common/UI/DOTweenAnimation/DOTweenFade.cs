@@ -2,15 +2,17 @@
 using System;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenFade : DOTweenTransition
     {
         [SerializeField] private CanvasGroup target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private float from;
         [SerializeField] private float to;
 
         public CanvasGroup Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public float From { get => from; set => from = value; }
         public float To { get => to; set => to = value; }
 
@@ -21,7 +23,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.alpha = from;
+            if (!fromCurrent)
+            {
+                target.alpha = from;
+            }
         }
 
         public override void CreateTween(Action onCompleted)

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEditor;
 using System.Linq;
+using Ftech.Lib.InventorySystem;
 
-namespace AtoLib.InventorySystem
+namespace Ftech.Lib.InventorySystem
 {
     [CustomEditor(typeof(Inventory))]
     public class InventoryInspector : Editor

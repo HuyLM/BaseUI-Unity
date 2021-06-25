@@ -2,11 +2,12 @@
 using System;
 using UnityEngine;
 
-namespace AtoLib.UI
+namespace Ftech.Lib.UI
 {
     public class DOTweenPunchAnchorPosition : DOTweenTransition
     {
         [SerializeField] private RectTransform target;
+        [SerializeField] private bool fromCurrent;
         [SerializeField] private Vector2 from;
         [SerializeField] private Vector2 punch;
         [SerializeField] private int vibrato = 10;
@@ -14,6 +15,7 @@ namespace AtoLib.UI
         [SerializeField] private bool snapping = false;
 
         public RectTransform Target { get => target; set => target = value; }
+        public bool FromCurrent { get => fromCurrent; set => fromCurrent = value; }
         public Vector2 From { get => from; set => from = value; }
         public Vector2 Punch { get => punch; set => punch = value; }
         public int Vibrato { get => vibrato; set => vibrato = value; }
@@ -28,7 +30,10 @@ namespace AtoLib.UI
 
         public override void ResetState()
         {
-            target.anchoredPosition = from;
+            if (!fromCurrent)
+            {
+                target.anchoredPosition = from;
+            }
         }
 
         public override void CreateTween(Action onCompleted)
