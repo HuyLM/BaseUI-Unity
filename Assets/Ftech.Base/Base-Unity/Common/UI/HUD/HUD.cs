@@ -26,17 +26,16 @@ namespace Ftech.Lib.UI
 
         protected virtual void Start()
         {
-            foreach (Frame frame in frames)
-            { // ???
-                InitializeFrame(frame);
-            }
-
             if (defaultFrame)
             {
                 if (activeFrames.Contains(defaultFrame))
                     return;
                 Frame newDefaultFrame = Instantiate(defaultFrame, transform);
                 loadedFrames.Add(newDefaultFrame);
+                if (!newDefaultFrame.Initialized)
+                {
+                    InitializeFrame(newDefaultFrame);
+                }
                 Show(newDefaultFrame);
             }
         }
@@ -151,6 +150,10 @@ namespace Ftech.Lib.UI
                         if (loadFrame != null)
                         {
                             loadedFrames.Add(loadFrame);
+                            if (!loadFrame.Initialized)
+                            {
+                                InitializeFrame(loadFrame);
+                            }
                             return loadFrame as F;
                         }
                     }

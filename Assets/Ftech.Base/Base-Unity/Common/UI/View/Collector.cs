@@ -10,7 +10,7 @@ namespace Ftech.Lib.UI
         {
             get; private set;
         }
-        protected T[] Items
+        protected List<T> Items
         {
             get; private set;
         }
@@ -25,7 +25,7 @@ namespace Ftech.Lib.UI
             {
                 return default;
             }
-            if (index < 0 || index >= Items.Length)
+            if (index < 0 || index >= Items.Count)
             {
                 return default;
             }
@@ -47,19 +47,19 @@ namespace Ftech.Lib.UI
 
         public Collector<T> SetItems(IEnumerable<T> items)
         {
-            Items = items.ToArray();
+            Items = items.ToList();
             return this;
         }
 
         public Collector<T> SetItems(params T[] items)
         {
-            Items = items;
+            Items = items.ToList();
             return this;
         }
 
         public Collector<T> SetItems(List<T> items)
         {
-            Items = items.ToArray();
+            Items = items;
             return this;
         }
 

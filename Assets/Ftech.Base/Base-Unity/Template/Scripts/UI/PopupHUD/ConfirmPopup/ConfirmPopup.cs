@@ -7,8 +7,8 @@ namespace Ftech.Lib.UI
 
     public class ConfirmPopup : BasePopup
     {
-        [SerializeField] private ButtonBase btnConfirm;
-        [SerializeField] private ButtonBase btnCancel;
+        [SerializeField] private Button btnConfirm;
+        [SerializeField] private Button btnCancel;
         [SerializeField] private Text txtConfirm;
         [SerializeField] private Text txtCancel;
 
