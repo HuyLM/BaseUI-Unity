@@ -6,16 +6,16 @@ using UnityEngine;
 
 namespace Ftech.Lib.Common
 {
-    public class SoundManager : MonoBehaviour
+    public class SoundManager<T> : SingletonBind<T> where T : MonoBehaviour
     {
         [Header("==== Audio Source ====")]
-        [SerializeField] private AudioSource backgroundMusic;
-        [SerializeField] private AudioSource soundEffect;
+        [SerializeField] protected AudioSource backgroundMusic;
+        [SerializeField] protected AudioSource soundEffect;
 
-        private List<AudioSource> loopAudios;
+        protected List<AudioSource> loopAudios;
 
-        private bool backgroundPausing;
-        private int previousPriovity = int.MaxValue;
+        protected bool backgroundPausing;
+        protected int previousPriovity = int.MaxValue;
 
         public enum PlaySoundType { None, Override, Duplicate }
 

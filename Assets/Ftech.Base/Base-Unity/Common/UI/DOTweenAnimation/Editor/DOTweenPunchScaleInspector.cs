@@ -1,5 +1,4 @@
-﻿using Ftech.Lib.UI;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Ftech.Lib.UI
@@ -11,7 +10,7 @@ namespace Ftech.Lib.UI
         private SerializedProperty targetProperty;
         private SerializedProperty fromCurrentProperty;
         private SerializedProperty fromProperty;
-        private SerializedProperty toProperty;
+        private SerializedProperty punchProperty;
         private SerializedProperty vibratoProperty;
         private SerializedProperty elasticityProperty;
 
@@ -22,7 +21,7 @@ namespace Ftech.Lib.UI
             targetProperty = serializedObject.FindProperty("target");
             fromCurrentProperty = serializedObject.FindProperty("fromCurrent");
             fromProperty = serializedObject.FindProperty("from");
-            toProperty = serializedObject.FindProperty("to");
+            punchProperty = serializedObject.FindProperty("punch");
             vibratoProperty = serializedObject.FindProperty("vibrato");
             elasticityProperty = serializedObject.FindProperty("elasticity");
         }
@@ -44,7 +43,7 @@ namespace Ftech.Lib.UI
                 GUILayout.EndHorizontal();
             }
             GUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(toProperty);
+            EditorGUILayout.PropertyField(punchProperty);
             if (GUILayout.Button("Set To", GUILayout.Width(100)))
             {
                 dOTweenPunchScale.SetToState();
