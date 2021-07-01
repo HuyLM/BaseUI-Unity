@@ -19,18 +19,13 @@ namespace Ftech.Lib.UI
         [ReadOnly] private readonly List<Frame> activeFrames = new List<Frame>();
         [ReadOnly] private readonly List<Frame> loadedFrames = new List<Frame>();
 
-        protected virtual void OnValidate()
-        {
-            container = transform;
-        }
-
         protected virtual void Start()
         {
             if (defaultFrame)
             {
                 if (activeFrames.Contains(defaultFrame))
                     return;
-                Frame newDefaultFrame = Instantiate(defaultFrame, transform);
+                Frame newDefaultFrame = Instantiate(defaultFrame, container);
                 loadedFrames.Add(newDefaultFrame);
                 if (!newDefaultFrame.Initialized)
                 {

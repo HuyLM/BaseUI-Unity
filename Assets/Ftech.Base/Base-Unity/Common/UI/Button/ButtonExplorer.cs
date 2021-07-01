@@ -25,7 +25,7 @@ namespace Ftech.Lib.UI
 #endif
 
         public enum DisableType { NONE, COLOR, MASK, MATERIAL, SPRITE }
-
+#if UNITY_EDITOR
         protected override void OnValidate()
         {
             base.OnValidate();
@@ -34,7 +34,7 @@ namespace Ftech.Lib.UI
             if (mainBg == null)
                 mainBg = GetComponentInChildren<Image>();
         }
-
+#endif
         protected override void InvokeOnClick()
         {
             base.InvokeOnClick();

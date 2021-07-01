@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Ftech.Lib.UI
 {
     public class TabButton : MonoBehaviour
     {
-        [SerializeField] private ButtonBase btnTab;
+        [SerializeField] private Button btnTab;
         [SerializeField] private int tabIndex;
         private Action<int> onTabClicked;
 

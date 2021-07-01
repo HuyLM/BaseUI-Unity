@@ -161,12 +161,12 @@ namespace Ftech.Lib.Common.Utilities
 
         public static void SetRight(this RectTransform rt, float right)
         {
-            rt.offsetMax = new Vector2(-right, rt.offsetMax.y);
+            rt.offsetMax = new Vector2(right, rt.offsetMax.y);
         }
 
         public static void SetTop(this RectTransform rt, float top)
         {
-            rt.offsetMax = new Vector2(rt.offsetMax.x, -top);
+            rt.offsetMax = new Vector2(rt.offsetMax.x, top);
         }
 
         public static void SetBottom(this RectTransform rt, float bottom)

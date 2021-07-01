@@ -19,4 +19,21 @@ namespace Ftech.Lib
             return jdt;
         }
     }
+
+    [Serializable]
+    struct JsonTimeSpan
+    {
+        public long v;
+
+        public static implicit operator TimeSpan(JsonTimeSpan jts)
+        {
+            return new TimeSpan(jts.v);
+        }
+        public static implicit operator JsonTimeSpan(TimeSpan ts)
+        {
+            JsonTimeSpan jdt = new JsonTimeSpan();
+            jdt.v = ts.Ticks;
+            return jdt;
+        }
+    }
 }

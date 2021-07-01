@@ -1,12 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Ftech.Lib.UI
 {
     public class TabControl : MonoBehaviour
     {
         [SerializeField] private TabButton[] tabButtons;
+        [SerializeField] private UnityEvent<int> onTabChanged;
+        protected int curTabIndex;
+
+        public int CurTabIndex { get => curTabIndex; }
 
         private void Start()
         {
@@ -16,31 +19,42 @@ namespace Ftech.Lib.UI
             }
         }
 
+        public virtual void Init()
+        {
+
+        }
+
         protected void OnTabButtonClicked(int index)
         {
             SelectTab(index);
         }
 
-        protected virtual void SelectTab(int index)
+        protected void SelectTab(int index)
         {
-            for (int i = 0; i < tabButtons.Length; ++i)
-            {
-                if (index == tabButtons[i].TabIndex)
-                {
-                    tabButtons[i].SetActiveTab(false);
-                }
-                else
-                {
-                    tabButtons[i].SetActiveTab(true);
-                }
-            }
+            ChangeTab(index);
+            onTabChanged?.Invoke(index);
         }
 
         public void ForceSelectTab(int index)
         {
-            SelectTab(index);
+            ChangeTab(index);
         }
 
+        protected virtual void ChangeTab(int index)
+        {
+            for (int i = 0; i < tabButtons.Length; ++i)
+            {
+                if (index == tabButtons[i].TabIndex) // new tab button
+                {
+                    tabButtons[i].SetActiveTab(false);
+                }
+                else if (curTabIndex == tabButtons[i].TabIndex) // old tab button
+                {
+                    tabButtons[i].SetActiveTab(true);
+                }
+            }
+            curTabIndex = index;
+        }
 
     }
 }
