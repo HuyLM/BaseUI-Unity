@@ -5,13 +5,13 @@ namespace Ftech.Lib.UI
 {
     public class TabControl : MonoBehaviour
     {
-        [SerializeField] private TabButton[] tabButtons;
-        [SerializeField] private UnityEvent<int> onTabChanged;
+        [SerializeField] protected TabButton[] tabButtons;
+        [SerializeField] protected UnityEvent<int> onTabChanged;
         protected int curTabIndex;
 
         public int CurTabIndex { get => curTabIndex; }
 
-        private void Start()
+        protected virtual void Start()
         {
             for (int i = 0; i < tabButtons.Length; ++i)
             {
@@ -24,7 +24,7 @@ namespace Ftech.Lib.UI
 
         }
 
-        protected void OnTabButtonClicked(int index)
+        protected virtual void OnTabButtonClicked(int index)
         {
             SelectTab(index);
         }
